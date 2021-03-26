@@ -15,6 +15,16 @@ const useStyles = makeStyles((theme) => ({
     color: theme.palette.text.secondary,
     height: 400
   },
+  cityBox: {
+    padding: theme.spacing(2),
+    textAlign: 'left',
+    height: 400,
+    backgroundImage: `url("https://picsum.photos/800/400")`
+  },
+  textcityBox: {
+    marginLeft: 150,
+    marginTop: 50,
+  }
 }));
 
 export default function FullWidthGrid() {
@@ -24,7 +34,13 @@ export default function FullWidthGrid() {
     <div className={classes.root}>
       <Grid container spacing={4}>
         <Grid item xs={12} sm={8}>
-          <Paper className={classes.paper}>city selected</Paper>
+          <Paper className={classes.cityBox} style={{borderRadius: 25}}>
+            <div className={classes.textcityBox}>
+              <h1>Turin</h1>
+              <h4>Friday 18, september</h4>
+              <small>Sunny</small>
+            </div>
+          </Paper>
         </Grid>
         <Grid item xs={12} sm={4}>
           <Paper className={classes.paper}>Select city</Paper>
