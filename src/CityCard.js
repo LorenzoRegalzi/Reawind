@@ -18,9 +18,9 @@ const useStyles = makeStyles({
     display: 'flex',
     flexDirection:'row',
     justifyContent: 'space-around',
-    backgroundImage: 'linear-gradient(114deg, rgba(86,122,232,1) 0%, rgba(97,140,236,1) 35%, rgba(108,163,241,1) 100%)',
+    backgroundImage: 'linear-gradient(to right, #50586e, #555e73, #5a6478, #606a7e, #657083, #6a7588, #6e7b8d, #738092, #798698, #7f8d9d, #8593a3, #8b9aa9);',
     color: 'white',
-    marginBottom: 20
+    
   },
   tempBox:{
     display: 'flex',
@@ -31,7 +31,8 @@ const useStyles = makeStyles({
   },
   cityName: {
       margin:0,
-      marginBottom: 5
+      marginBottom: 5,
+      padding:0
   },
   date: {
       margin:0,
@@ -51,7 +52,8 @@ export default function SimpleCard() {
   
 
   return (
-    <Card className={classes.root}>
+    <React.Fragment> 
+    <Card className={classes.root} style={{marginBottom:20, backgroundImage: 'linear-gradient(to right, #132e70, #173476, #1a397c, #1e3f81, #224587, #264c8e, #2b5395, #2f5a9c, #3564a6, #3b6db0, #4177ba, #4781c4)'}}>
         <div className={classes.tempBox}>
         <h2 className={classes.cityName}>London</h2>
         <h5 className={classes.date}>Friday 18,</h5>
@@ -68,5 +70,23 @@ export default function SimpleCard() {
       
 
     </Card>
+    <Card className={classes.root}>
+    <div className={classes.tempBox}>
+    <h2 className={classes.cityName}>London</h2>
+    <h5 className={classes.date}>Friday 18,</h5>
+    <h5 className={classes.date}>September  </h5>
+    <small className={classes.hour}>2:30pm</small>
+    </div>
+    <div className={classes.tempBox}>
+    <WbSunnyOutlinedIcon fontSize="large"></WbSunnyOutlinedIcon>
+    </div>
+   <div className={classes.tempBox}>
+    <p  className={classes.temperature}>20</p>
+   </div>
+  
+  
+
+</Card>
+</React.Fragment> 
   );
 }

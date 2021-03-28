@@ -23,3 +23,7 @@ h1 {
   background-color: none; 
 }
 
+.swiper-pagination-bullet,.swiper-pagination-bullet-active {
+  background-color: red;
+}
+

@@ -1,13 +1,15 @@
 import React from 'react';
+
 import { makeStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
 import Timeline from './Timeline';
-import Tabs from './Tabs';
 import SearchCard from './SearchCard';
 import Localization from './Localization';
 import AddCity from './AddCIty';
 import CityCard from './CityCard';
+import Temperature from './Temperature';
+import Tabs from './Tabs';
 
 
 import './App.css';
@@ -20,12 +22,12 @@ const useStyles = makeStyles((theme) => ({
     paddingLeft: 35,
     paddingRight: 35,
     overflow: 'hidden',
-    maxheight: 1024,
+   
   },
   paper: {
     textAlign: 'left',
     boxShadow: 'none',
-    maxheight: 400,
+    
     backgroundColor: 'transparent',
     marginLeft: 15,
     marginRight: 15
@@ -33,7 +35,7 @@ const useStyles = makeStyles((theme) => ({
   
   textcityBox: {
     marginLeft: 150,
-    paddingTop: 50,
+    paddingTop: 80,
 
   },
   cardTitle: {
@@ -52,7 +54,18 @@ const useStyles = makeStyles((theme) => ({
     -moz-box-shadow: 0px 26px 32px 2px rgba(0,0,0,0.12);
     box-shadow: 0px 26px 32px 2px rgba(0,0,0,0.12);`,
     marginLeft: 15,
-    marginRight: 15
+    marginRight: 15,
+  },
+  absoluteCard: {
+    width: '140',
+    height: '280',
+    display: 'absolute',
+    position: 'absolute',
+    top: '130',
+  },
+  grid:{
+   blockSize: 650,
+   
   }
 }));
 
@@ -60,47 +73,49 @@ export default function FullWidthGrid() {
   const classes = useStyles();
 
   return (
+    <React.Fragment>
+    <div className={classes.absoluteCard}>
+      <Temperature></Temperature>
+    </div>
     <div className={classes.root}>
-      <Grid container spacing={1}>
-        <Grid item xs={12} sm={8} >
-          <Paper className={classes.cityBox} style={{borderRadius: 25,height: 450, backgroundImage: `url("https://picsum.photos/800/400")`}}>
+      
+      <Grid container spacing={3}>
+        <Grid className={classes.grid} style={{height: '100%'}} item xs={12} sm={12} md={8}>
+          <Paper className={classes.cityBox} style={{borderRadius: 25,height: 450, backgroundImage: `url("../torino.jpeg")`}}>
             <div className={classes.textcityBox}>
-              <h1>Turin</h1>
+              <h1 style={{padding: 0}}>Turin</h1>
               <h4>Friday 18, september</h4>
               <small>Sunny</small>
             </div>
           </Paper>
         </Grid>
-        <Grid item xs={12} sm={4}>
+        <Grid item xs={12} sm={12} md={4}>
           <AddCity></AddCity>
           <Paper className={classes.paper} >
             <div className={classes.tipCard}>
-              <CityCard></CityCard>
-            </div>
-            <div className={classes.tipCard}>
-              <CityCard></CityCard>
+              <CityCard  ></CityCard>
             </div>
           </Paper>
         </Grid>
-        <Grid item xs={12} sm={3}>
+        <Grid item xs={12} sm={6} md={3}>
           <Paper className={classes.paper}>
             <h1 className={classes.cardTitle}>Today</h1>
             <Timeline ></Timeline>
           </Paper>
         </Grid>
-        <Grid item xs={6} sm={5}>
+        <Grid style={{height: '100%'}} item xs={12} sm={6} md={5}>
           <Paper className={classes.paper}>
             <Tabs></Tabs>
           </Paper>
         </Grid>
-        <Grid item xs={6} sm={4}>
+        <Grid  item xs={12} sm={12} md={4}>
           <Paper className={classes.paper}>
             <h1 className={classes.cardTitle}>Search</h1>
             <div className={classes.tipCard}>
               <SearchCard>
               </SearchCard>
             </div>
-            <h1 className={classes.cardTitle} style={{marginTop: 50}}>Localization</h1>
+            <h1 className={classes.cardTitle} style={{marginTop: 20}}>Localization</h1>
             <div className={classes.tipCard}>
               <Localization></Localization>
             </div>
@@ -108,5 +123,6 @@ export default function FullWidthGrid() {
         </Grid>
       </Grid>
     </div>
+    </React.Fragment>
   );
 }

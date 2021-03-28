@@ -13,11 +13,29 @@ const useStyles = makeStyles((theme) => ({
     timeline: {
         backgroundImage: 'linear-gradient(114deg, rgba(86,122,232,1) 0%, rgba(97,140,236,1) 35%, rgba(108,163,241,1) 100%)',
         overflowY: 'scroll',
-        height: '400',
+        height: '362',
         margin:0,
-        marginTop:2,
+        marginTop:10,
         borderRadius: 25,
-        color:"#E8EFFC"
+        color:"#ffffff"
+    },
+    dot: {
+        backgroundColor:"#ffffff",
+        width: 15,
+        height: 15,
+        margin:0
+    },
+    line: {
+        backgroundColor:"#ffffff",
+        width: 5,
+        height: 15,
+    },
+    title: {
+        color:"#ffffff",
+        textAlign: 'center',
+        fontWeight: 'bold',
+        marginTop:50,
+        marginBottom:5,
     },
   }));
 
@@ -26,14 +44,17 @@ export default function OppositeContentTimeline() {
 
   return (
     <React.Fragment>
+    
       <Timeline className={classes.timeline} >
+      <h3 className={classes.title}>NOW</h3>
         <TimelineItem>
+       
           <TimelineOppositeContent>
             <Typography >09:30 am</Typography>
           </TimelineOppositeContent>
           <TimelineSeparator>
-            <TimelineDot />
-            <TimelineConnector />
+            <TimelineDot className={classes.dot}/>
+            <TimelineConnector className={classes.line}/>
           </TimelineSeparator>
           <TimelineContent>
             <Typography>Eat</Typography>
@@ -44,8 +65,8 @@ export default function OppositeContentTimeline() {
             <Typography >10:00 am</Typography>
           </TimelineOppositeContent>
           <TimelineSeparator>
-            <TimelineDot />
-            <TimelineConnector />
+            <TimelineDot className={classes.dot}/>
+            <TimelineConnector className={classes.line}/>
           </TimelineSeparator>
           <TimelineContent>
             <Typography>Code</Typography>
@@ -56,8 +77,8 @@ export default function OppositeContentTimeline() {
             <Typography >12:00 am</Typography>
           </TimelineOppositeContent>
           <TimelineSeparator>
-            <TimelineDot />
-            <TimelineConnector />
+            <TimelineDot className={classes.dot}/>
+            <TimelineConnector className={classes.line}/>
           </TimelineSeparator>
           <TimelineContent>
             <Typography>Sleep</Typography>
@@ -68,8 +89,8 @@ export default function OppositeContentTimeline() {
             <Typography >9:00 am</Typography>
           </TimelineOppositeContent>
           <TimelineSeparator>
-            <TimelineDot />
-            <TimelineConnector />
+            <TimelineDot className={classes.dot}/>
+            <TimelineConnector className={classes.line}/>
           </TimelineSeparator>
           <TimelineContent>
             <Typography>Repeat</Typography>
@@ -80,8 +101,8 @@ export default function OppositeContentTimeline() {
             <Typography >9:00 am</Typography>
           </TimelineOppositeContent>
           <TimelineSeparator>
-            <TimelineDot />
-            <TimelineConnector />
+            <TimelineDot className={classes.dot}/>
+            <TimelineConnector className={classes.line}/>
           </TimelineSeparator>
           <TimelineContent>
             <Typography>Repeat</Typography>
@@ -92,8 +113,8 @@ export default function OppositeContentTimeline() {
             <Typography >9:00 am</Typography>
           </TimelineOppositeContent>
           <TimelineSeparator>
-            <TimelineDot />
-            <TimelineConnector />
+            <TimelineDot className={classes.dot}/>
+            <TimelineConnector className={classes.line}/>
           </TimelineSeparator>
           <TimelineContent>
             <Typography>Repeat</Typography>
@@ -104,8 +125,8 @@ export default function OppositeContentTimeline() {
             <Typography >9:00 am</Typography>
           </TimelineOppositeContent>
           <TimelineSeparator>
-            <TimelineDot />
-            <TimelineConnector />
+            <TimelineDot className={classes.dot}/>
+            <TimelineConnector className={classes.line}/>
           </TimelineSeparator>
           <TimelineContent>
             <Typography>Repeat</Typography>
@@ -116,8 +137,8 @@ export default function OppositeContentTimeline() {
             <Typography >9:00 am</Typography>
           </TimelineOppositeContent>
           <TimelineSeparator>
-            <TimelineDot />
-            <TimelineConnector />
+            <TimelineDot className={classes.dot}/>
+            <TimelineConnector className={classes.line}/>
           </TimelineSeparator>
           <TimelineContent>
             <Typography>Repeat</Typography>
