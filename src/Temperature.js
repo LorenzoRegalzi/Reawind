@@ -37,15 +37,15 @@ const useStyles = makeStyles({
   }
 });
 
-export default function SimpleCard() {
+export default function SimpleCard({ data }) {
   const classes = useStyles();
   
 
   return (
     <Card className={classes.root}>
         
-        <p  className={classes.temperature}>20</p>
-        <WbSunnyOutlinedIcon fontSize="large"></WbSunnyOutlinedIcon>
+        <p  className={classes.temperature}>{Math.floor(data.main.temp - 273.15)}<sup>o</sup></p>
+        <img src={`http://openweathermap.org/img/wn/${data.weather[0].icon}.png`}></img>
     </Card>
   );
 }
