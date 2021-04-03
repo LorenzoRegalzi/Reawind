@@ -14,3 +14,57 @@ h2 {
   width: 10px;
   height: 10px;
 }
+
+/* Main Card */
+
+.textcityBox {
+  margin-left: 150;
+  padding-top: 80
+}
+
+
+
+
+/* Timeline */
+
+.dot {
+  background-color: white;
+  width: 15px;
+  height: 15px;
+  margin: 0;
+  border-radius: 50%;
+}
+.line {
+  background-color: white;
+  width: 5px;
+  height: 40px;
+}
+
+.timeline {
+  overflow-y: scroll;
+  height: 362px;
+  margin: 0;
+  margin-top:10;
+  border-radius: 25px;
+  color: #ffffff;
+  background-image: linear-gradient(114deg, rgba(86,122,232,1) 0%, rgba(97,140,236,1) 35%, rgba(108,163,241,1) 100%);
+  padding-left: 0;
+}
+.dot {
+  background-color: #ffffff;
+  width: 23px;
+  height: 23px;
+  margin: 0;
+}
+.line {
+  background-color: #ffffff;
+  width: 5px;
+  height: 55px;
+}
+.title {
+  color: #ffffff;
+  text-align: center;
+  font-weight: bold;
+  margin-top: 50;
+  margin-bottom: 5;
+}

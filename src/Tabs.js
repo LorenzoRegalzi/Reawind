@@ -27,12 +27,12 @@ class Tabs extends Component {
                 <div  style={{height:'100%',width:'75%',backgroundColor:'#F1F1F1;',display:'flex', }}>
                     <div  style={{height:'100%',width:'50%',backgroundColor: "#FFFFFF", borderTopLeftRadius:25,}}>
                         <div   onClick={this.firstTab} style={{height:'100%',width:'100%',backgroundColor: this.state.showInfo ? "#FFFFFF" : "green",backgroundImage: !this.state.showInfo ? 'linear-gradient(to right, #5982ea, #5a83ea, #5a84ea, #5b84ea, #5c85ea, #5c86ea, #5d86eb, #5d87eb, #5d88eb, #5e89ec, #5e8aec, #5f8bec)': "none", borderTopLeftRadius:25,borderTopRightRadius:25, display:'flex',alignItems: 'center', justifyContent: 'center'}}>
-                            <h2 style={{color: this.state.showInfo ? "black" : "white"}}>This month</h2>
+                            <h2 style={{color: this.state.showInfo ? "black" : "white"}}>This week</h2>
                         </div>
                     </div>
                     <div  style={{height:'100%',width:'50%',backgroundColor: "#FFFFFF",borderTopRightRadius:25}}>
                         <div  onClick={this.secondTab } style={{height:'100%',width:'100%',backgroundColor:this.state.showInfo ? "green" : "#FFFFFF", backgroundImage: this.state.showInfo ? 'linear-gradient(to right, #5f8bec, #5f8cec, #5f8dec, #608deb, #608eeb, #608feb, #6190ec, #6191ec, #6192ec, #6294ed, #6295ed, #6396ed)': "none",borderTopLeftRadius:25,borderTopRightRadius:25, display:'flex',alignItems: 'center', justifyContent: 'center'}}>
-                            <h2 style={{color: this.state.showInfo ? "white" : "black"}}>This week</h2>
+                            <h2 style={{color: this.state.showInfo ? "white" : "black"}}>This month</h2>
                         </div>
                     </div>
                 </div>

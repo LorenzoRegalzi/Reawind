@@ -1,9 +1,11 @@
-import React from 'react';
+
 import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import WbSunnyOutlinedIcon from '@material-ui/icons/WbSunnyOutlined';
 
-
+import { useDispatch, useSelector } from 'react-redux';
+import { getFiveDayWeather} from './store/actions/weatherActions';
+import React, {useState, useEffect} from 'react';
 
 
 
@@ -50,15 +52,37 @@ const useStyles = makeStyles({
 export default function SimpleCard() {
   const classes = useStyles();
   
+  const [loading, setLoading] = useState(false);
+  const dispatch = useDispatch();
+  const { data, error } = useSelector(state => state.weather);
 
+  //console.log(data);
+
+  
+    useEffect(() => {
+      dispatch(getFiveDayWeather('Milano'));
+      console.log('i fire once');
+    }, [dispatch]);
+    
+    
+
+  if (error) {
+    return <div >
+      <h1 >{error}</h1>
+    </div>;
+  }
+
+  if (!loading && !data) {
+    return null;
+  }
   return (
     <React.Fragment> 
     <Card className={classes.root} style={{marginBottom:20, backgroundImage: 'linear-gradient(to right, #132e70, #173476, #1a397c, #1e3f81, #224587, #264c8e, #2b5395, #2f5a9c, #3564a6, #3b6db0, #4177ba, #4781c4)'}}>
         <div className={classes.tempBox}>
-        <h2 className={classes.cityName}>London</h2>
-        <h5 className={classes.date}>Friday 18,</h5>
-        <h5 className={classes.date}>September  </h5>
-        <small className={classes.hour}>2:30pm</small>
+        <h2 className={classes.cityName}>{data.city.name}</h2>
+        <h5 className={classes.date}><h2>{data.list[0].dt_txt}</h2></h5>
+        <h5 className={classes.date}></h5>
+        <small className={classes.hour}></small>
         </div>
         <div className={classes.tempBox}>
         <WbSunnyOutlinedIcon fontSize="large"></WbSunnyOutlinedIcon>

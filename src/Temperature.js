@@ -1,7 +1,7 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
-import WbSunnyOutlinedIcon from '@material-ui/icons/WbSunnyOutlined';
+
 
 
 
@@ -37,15 +37,26 @@ const useStyles = makeStyles({
   }
 });
 
-export default function SimpleCard({ data }) {
+
+const Temperature = ({ loading, data, error }) => {
   const classes = useStyles();
   
+  if (error) {
+    return <div >
+      <h1 >{error}</h1>
+    </div>;
+  }
 
+  if (!loading && !data) {
+    return null;
+  }
   return (
     <Card className={classes.root}>
         
-        <p  className={classes.temperature}>{Math.floor(data.main.temp - 273.15)}<sup>o</sup></p>
-        <img src={`http://openweathermap.org/img/wn/${data.weather[0].icon}.png`}></img>
+        <p  className={classes.temperature}>{Math.floor(data.list[0].main.temp)}<sup>o</sup></p>
+        <img src={`http://openweathermap.org/img/wn/${data.list[0].weather[0].icon}.png`} alt="temp"></img>
     </Card>
   );
 }
+
+export default Temperature;
