@@ -1,7 +1,7 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
-
+import './App.css';
 
 
 
@@ -16,10 +16,12 @@ const useStyles = makeStyles({
     box-shadow: 0px 26px 32px 2px rgba(0,0,0,0.12);`,
     borderTopRightRadius: 25,
     borderBottomRightRadius: 25,
+    borderTopLeftRadius: 0,
+    borderBottomLeftRadius: 0,
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
-    justifyContent: 'space-evenly',
+    justifyContent: 'center',
     backgroundImage: 'linear-gradient(114deg, rgba(86,122,232,1) 0%, rgba(97,140,236,1) 35%, rgba(108,163,241,1) 100%)',
     color: 'white'
   },
@@ -30,11 +32,7 @@ const useStyles = makeStyles({
   content: {
     flex: '1 0 auto',
   },
-  temperature: {
-    fontSize: '3em',
-    margin:0,
-    fontWeight: 'bold'
-  }
+  
 });
 
 
@@ -53,7 +51,7 @@ const Temperature = ({ loading, data, error }) => {
   return (
     <Card className={classes.root}>
         
-        <p  className={classes.temperature}>{Math.floor(data.list[0].main.temp)}<sup>o</sup></p>
+        <p  class="temperature">{Math.floor(data.list[0].main.temp)}<sup>o</sup></p>
         <img src={`http://openweathermap.org/img/wn/${data.list[0].weather[0].icon}.png`} alt="temp"></img>
     </Card>
   );

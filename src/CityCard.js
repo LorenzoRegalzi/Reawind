@@ -1,12 +1,12 @@
 
 import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
-import WbSunnyOutlinedIcon from '@material-ui/icons/WbSunnyOutlined';
+
 
 import { useDispatch, useSelector } from 'react-redux';
-import { getFiveDayWeather} from './store/actions/weatherActions';
+import { getMultiWeather} from './store/actions/multiWeatherAction';
 import React, {useState, useEffect} from 'react';
-
+import './App.css';
 
 
 const useStyles = makeStyles({
@@ -42,29 +42,48 @@ const useStyles = makeStyles({
   hour: {
     marginTop: 10
   },
-  temperature: {
-    fontSize: '3em',
-    margin:0,
-    fontWeight: 'bold'
-  }
 });
 
 export default function SimpleCard() {
   const classes = useStyles();
   
-  const [loading, setLoading] = useState(false);
+  const [loading] = useState(false);
   const dispatch = useDispatch();
-  const { data, error } = useSelector(state => state.weather);
+  const { data, error } = useSelector(state => state.multiWeather);
 
-  //console.log(data);
-
-  
     useEffect(() => {
-      dispatch(getFiveDayWeather('Milano'));
-      console.log('i fire once');
+      dispatch(getMultiWeather());
+
     }, [dispatch]);
     
+    console.log(data);
+
+    let d = new Date();
+
+    let month = new Intl.DateTimeFormat('en', { month: 'long' }).format(d);
+    let day = new Intl.DateTimeFormat('en', { day: '2-digit' }).format(d);
+    let dayString = new Intl.DateTimeFormat('en', { weekday: 'long'}).format(d);
+
+
+      
+
+  
+      function timeWithPlace(timezone){
+        let optionsUk = {
+          timeZone: timezone,
+          hour: 'numeric',
+          minute: 'numeric',
+          hour12: true,
+        },
+        formatter = new Intl.DateTimeFormat([], optionsUk);
+        return formatter.format(new Date());
+      }
+
     
+  
+      
+
+  
 
   if (error) {
     return <div >
@@ -77,40 +96,42 @@ export default function SimpleCard() {
   }
   return (
     <React.Fragment> 
-    <Card className={classes.root} style={{marginBottom:20, backgroundImage: 'linear-gradient(to right, #132e70, #173476, #1a397c, #1e3f81, #224587, #264c8e, #2b5395, #2f5a9c, #3564a6, #3b6db0, #4177ba, #4781c4)'}}>
-        <div className={classes.tempBox}>
-        <h2 className={classes.cityName}>{data.city.name}</h2>
-        <h5 className={classes.date}><h2>{data.list[0].dt_txt}</h2></h5>
-        <h5 className={classes.date}></h5>
-        <small className={classes.hour}></small>
-        </div>
-        <div className={classes.tempBox}>
-        <WbSunnyOutlinedIcon fontSize="large"></WbSunnyOutlinedIcon>
-        </div>
-       <div className={classes.tempBox}>
-        <p  className={classes.temperature}>20</p>
-       </div>
-      
-      
 
-    </Card>
     <Card className={classes.root}>
     <div className={classes.tempBox}>
-    <h2 className={classes.cityName}>London</h2>
-    <h5 className={classes.date}>Friday 18,</h5>
-    <h5 className={classes.date}>September  </h5>
-    <small className={classes.hour}>2:30pm</small>
+    <h2 className={classes.cityName}>{data.list[0].name}</h2>
+    <h5 className={classes.date}>{`${dayString} ${day},`}</h5>
+    <h5 className={classes.date}>{`${month}`}</h5>
+    <small className={classes.hour}>{timeWithPlace('GB')}</small>
     </div>
     <div className={classes.tempBox}>
-    <WbSunnyOutlinedIcon fontSize="large"></WbSunnyOutlinedIcon>
+    <img src={`http://openweathermap.org/img/wn/${data.list[0].weather[0].icon}.png`} alt="temp"></img>
     </div>
    <div className={classes.tempBox}>
-    <p  className={classes.temperature}>20</p>
+    <p  class="temperature">{Math.round(data.list[0].main.temp)}<sup>o</sup></p>
+   </div>
+   </Card>
+   <Card className={classes.root} style={{marginTop:20, backgroundImage: 'linear-gradient(to right, #132e70, #173476, #1a397c, #1e3f81, #224587, #264c8e, #2b5395, #2f5a9c, #3564a6, #3b6db0, #4177ba, #4781c4)'}}>
+    <div className={classes.tempBox}>
+    <h2 className={classes.cityName}>{data.list[1].name}</h2>
+    <h5 className={classes.date}>{`${dayString} ${day},` }</h5>
+    <h5 className={classes.date}>{`${month}`}</h5>
+    <small className={classes.hour}>{timeWithPlace('CET')}</small>
+    </div>
+    <div className={classes.tempBox}>
+    <img src={`http://openweathermap.org/img/wn/${data.list[1].weather[0].icon}.png`} alt="temp"></img>
+    </div>
+   <div className={classes.tempBox}>
+    <p  class="temperature">{Math.round(data.list[0].main.temp)}<sup>o</sup></p>
    </div>
   
   
 
 </Card>
+
+  
+
+
 </React.Fragment> 
   );
 }

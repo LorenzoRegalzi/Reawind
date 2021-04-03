@@ -19,11 +19,11 @@ export default function SimpleCard () {
   const dispatch = useDispatch();
   const { data, error } = useSelector(state => state.weather);
 
-  //console.log(data);
+  
 
 
   useEffect(() => {
-    dispatch(getFiveDayWeather('Milano'));
+    dispatch(getFiveDayWeather('Milan'));
   }, [dispatch]);
 
  

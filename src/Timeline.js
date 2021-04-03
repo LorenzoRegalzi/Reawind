@@ -22,7 +22,6 @@ export default function OppositeContentTimeline({ loading, data, error }) {
       return null;
     }
     
-    console.log(data.list[0].main.temp);
 
     const nowTemperature = data.list[0].main.temp;
 
@@ -46,25 +45,25 @@ export default function OppositeContentTimeline({ loading, data, error }) {
       onlyHours = onlyHours ? onlyHours : 12;
 
       let formatHours = onlyHours + ' ' + ampm;
-      
+
       times.push({date : formatHours , temperature : aroundTemperature});
     }
     
-    //console.log(time);
+  
 
   return (
     <React.Fragment>
     
       <Timeline class="timeline">
       
-      <h3 class="title">NOW</h3>
+      <h3 class="title">Now</h3>
         <TimelineItem>
        
           <TimelineOppositeContent>
-          <Typography>{aroundNowTemperature}<sup>o</sup></Typography>
+          <Typography class="firstTextDot">{aroundNowTemperature}<sup>o</sup></Typography>
           </TimelineOppositeContent>
           <TimelineSeparator>
-            <TimelineDot class="dot"/>
+            <TimelineDot class="firstDot"/>
             <TimelineConnector class="line"/>
           </TimelineSeparator>
           <TimelineContent>
@@ -74,7 +73,7 @@ export default function OppositeContentTimeline({ loading, data, error }) {
         {times.map(data => 
           <TimelineItem>
             <TimelineOppositeContent>
-            <Typography>{data.temperature}<sup>o</sup></Typography>
+            <Typography class="temperatureDot">{data.temperature}<sup>o</sup></Typography>
               
             </TimelineOppositeContent>
             <TimelineSeparator>
@@ -82,7 +81,7 @@ export default function OppositeContentTimeline({ loading, data, error }) {
               <TimelineConnector class="line"/>
             </TimelineSeparator>
             <TimelineContent>
-              <Typography>{data.date}</Typography>
+              <Typography class="temperatureDate">{data.date}</Typography>
             </TimelineContent>
           </TimelineItem>
         )}

@@ -23,15 +23,13 @@ import './App.css';
 export default function FullWidthGrid() {
   const classes = useStyles();
 
-
-  const [loading, setLoading] = useState(false);
+  const [loading] = useState(false);
   const dispatch = useDispatch();
   const { data, error } = useSelector(state => state.weather);
   
-  const test = '' ;
 
   useEffect(() => {
-    dispatch(getFiveDayWeather('Milano'));
+    dispatch(getFiveDayWeather('Milan'));
   }, [dispatch]);
 
 
@@ -112,7 +110,7 @@ const useStyles = makeStyles((theme) => ({
   paper: {
     textAlign: 'left',
     boxShadow: 'none',
-    
+    height:'100%',
     backgroundColor: 'transparent',
     marginLeft: 15,
     marginRight: 15

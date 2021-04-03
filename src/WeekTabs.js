@@ -5,6 +5,7 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getFiveDayWeather} from './store/actions/weatherActions';
 import React, {useState, useEffect} from 'react';
+import './App.css';
 
 
 
@@ -20,11 +21,11 @@ const [loading, setLoading] = useState(false);
   const dispatch = useDispatch();
   const { data, error } = useSelector(state => state.weather);
 
-  //console.log(data);
+
 
 
   useEffect(() => {
-    dispatch(getFiveDayWeather('Milano'));
+    dispatch(getFiveDayWeather('Milan'));
   }, [dispatch]);
 
  
@@ -39,30 +40,29 @@ const [loading, setLoading] = useState(false);
     return null;
   }
 
-  console.log(data)
 
-  const times = [];
 
-    for (let i = 0; i < 40; i+8) {
+    const times = [];
+    const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
 
-      let temperature = data.list[i].main.temp;
+    for (var i = 0; i < 40; ++i) {
+        if (i % 6 === 0) {
+            let temperature = data.list[i].main.temp;
 
-      let aroundTemperature = Math.round(temperature);
+            let aroundTemperature = Math.round(temperature);
 
-      var onlyHours = new Date(data.list[i].dt_txt).getHours();
-
-      var ampm = onlyHours >= 12 ? 'p.m.' : 'a.m.';
-
-      onlyHours = onlyHours % 12;
-
-      onlyHours = onlyHours ? onlyHours : 12;
-
-      let formatHours = onlyHours + ' ' + ampm;
+            let iconImg = data.list[i].weather[0].icon;
       
-      times.push({date : formatHours , temperature : aroundTemperature});
-    }
+            var onlyHours = new Date(data.list[i].dt_txt).getDay();
 
-    console.log(times + 'ehy')
+            let dayString = days[onlyHours]
+            
+            times.push({date : dayString, temperature : aroundTemperature, icon : iconImg });
+        }
+      }
+
+
+   
 
 
   return (
@@ -73,54 +73,45 @@ const [loading, setLoading] = useState(false);
     >
       <SwiperSlide style={{display:'flex', justifyContent: 'space-evenly', paddingTop: 30}}>
         <div id="horizontal" style={{display: 'flex', flexDirection: 'column', alignItems: 'center', height:'85%', color:'#FFFFFF', width:'28%',backgroundImage: 'linear-gradient(to right, #6a8eeb, #6b90ec, #6c93ec, #6d95ed, #6e97ed, #6f99ed, #709bee, #719dee, #729fef, #73a1ef, #75a2f0, #76a4f0)',borderRadius:25}}>
-            <h2>{data.list[0].dt_txt}</h2>
-            <p>{data.list[0].main.temp}</p>
-            <img src={`http://openweathermap.org/img/wn/${data.list[0].weather[0].icon}.png`} alt="temp"></img>
+            <h2>{times[0].date}</h2>
+            <p class="temperatureWeek">{times[0].temperature}<sup>o</sup></p>
+            <img src={`http://openweathermap.org/img/wn/${times[0].icon}.png`} alt="temp"></img>
         </div>
         <div id="horizontal" style={{display: 'flex', flexDirection: 'column', alignItems: 'center', height:'85%', color:'#FFFFFF', width:'28%',backgroundImage: 'linear-gradient(to right, #6d93ec, #6e95ed, #6e98ed, #6f9aee, #709cee, #719eee, #72a0ef, #73a2ef, #74a4ef, #76a6f0, #77a8f0, #79aaf0)',borderRadius:25}}>
-        <h2>{data.list[8].dt_txt}</h2>
-            <p>{data.list[8].main.temp}</p>
-            <img src={`http://openweathermap.org/img/wn/${data.list[8].weather[0].icon}.png`} alt="temp"></img>
+            <h2>{times[1].date}</h2>
+            <p class="temperatureWeek">{times[1].temperature}<sup>o</sup></p>
+            <img src={`http://openweathermap.org/img/wn/${times[1].icon}.png`} alt="temp"></img>
         </div>
         <div id="horizontal" style={{display: 'flex', flexDirection: 'column', alignItems: 'center', height:'85%', color:'#FFFFFF', width:'28%',backgroundImage:'linear-gradient(to right, #75a3ef, #76a4ef, #76a6f0, #77a7f0, #78a8f0, #79aaf0, #79abf1, #7aadf1, #7baff2, #7cb1f3, #7db3f3, #7eb5f4)',borderRadius:25}}>
-        <h2>{data.list[16].dt_txt}</h2>
-            <p>{data.list[16].main.temp}</p>
-            <img src={`http://openweathermap.org/img/wn/${data.list[16].weather[0].icon}.png`} alt="temp"></img>
+            <h2>{times[2].date}</h2>
+            <p class="temperatureWeek">{times[2].temperature}<sup>o</sup></p>
+            <img src={`http://openweathermap.org/img/wn/${times[2].icon}.png`} alt="temp"></img>
         </div> 
     </SwiperSlide>
     <SwiperSlide style={{display:'flex', justifyContent: 'space-evenly', paddingTop: 30}}>
     <div id="horizontal" style={{display: 'flex', flexDirection: 'column', alignItems: 'center', height:'85%', color:'#FFFFFF', width:'28%',backgroundImage: 'linear-gradient(to right, #6a8eeb, #6b90ec, #6c93ec, #6d95ed, #6e97ed, #6f99ed, #709bee, #719dee, #729fef, #73a1ef, #75a2f0, #76a4f0)',borderRadius:25}}>
-            <h2>{data.list[22].dt_txt}</h2>
-            <p>{data.list[22].main.temp}</p>
-            <img src={`http://openweathermap.org/img/wn/${data.list[22].weather[0].icon}.png`} alt="temp"></img>
+            <h2>{times[3].date}</h2>
+            <p class="temperatureWeek">{times[3].temperature}<sup>o</sup></p>
+            <img src={`http://openweathermap.org/img/wn/${times[3].icon}.png`} alt="temp"></img>
         </div>
         <div id="horizontal" style={{display: 'flex', flexDirection: 'column', alignItems: 'center', height:'85%', color:'#FFFFFF', width:'28%',backgroundImage: 'linear-gradient(to right, #6d93ec, #6e95ed, #6e98ed, #6f9aee, #709cee, #719eee, #72a0ef, #73a2ef, #74a4ef, #76a6f0, #77a8f0, #79aaf0)',borderRadius:25}}>
-        <h2>{data.list[30].dt_txt}</h2>
-            <p>{data.list[30].main.temp}</p>
-            <img src={`http://openweathermap.org/img/wn/${data.list[30].weather[0].icon}.png`} alt="temp"></img>
+            <h2>{times[4].date}</h2>
+            <p class="temperatureWeek">{times[4].temperature}<sup>o</sup></p>
+            <img src={`http://openweathermap.org/img/wn/${times[4].icon}.png`} alt="temp"></img>
         </div>
         <div id="horizontal" style={{display: 'flex', flexDirection: 'column', alignItems: 'center', height:'85%', color:'#FFFFFF', width:'28%',backgroundImage:'linear-gradient(to right, #75a3ef, #76a4ef, #76a6f0, #77a7f0, #78a8f0, #79aaf0, #79abf1, #7aadf1, #7baff2, #7cb1f3, #7db3f3, #7eb5f4)',borderRadius:25}}>
-        <h2>{data.list[39].dt_txt}</h2>
-        <p>{data.list[39].main.temp}</p>
-            <img src={`http://openweathermap.org/img/wn/${data.list[39].weather[0].icon}.png`} alt="temp"></img>
+        <h2>{times[5].date}</h2>
+        <p class="temperatureWeek">{times[5].temperature}<sup>o</sup></p>
+            <img src={`http://openweathermap.org/img/wn/${times[5].icon}.png`} alt="temp"></img>
         </div> 
     </SwiperSlide>
-    <SwiperSlide style={{display:'flex', justifyContent: 'space-evenly', paddingTop: 30}}>
+    <SwiperSlide style={{display:'flex', justifyContent: 'start', paddingTop: 30, paddingLeft: '25px'}}>
         <div id="horizontal" style={{display: 'flex', flexDirection: 'column', alignItems: 'center', height:'85%', color:'#FFFFFF', width:'28%',backgroundImage: 'linear-gradient(to right, #6a8eeb, #6b90ec, #6c93ec, #6d95ed, #6e97ed, #6f99ed, #709bee, #719dee, #729fef, #73a1ef, #75a2f0, #76a4f0)',borderRadius:25}}>
-            <h2>Saturday</h2>
-            <p>20</p>
-            <WbSunnyOutlinedIcon fontSize="large"></WbSunnyOutlinedIcon>
+            <h2>{times[6].date}</h2>
+            <p class="temperatureWeek">{times[6].temperature}<sup>o</sup></p>
+            <img src={`http://openweathermap.org/img/wn/${times[6].icon}.png`} alt="temp"></img>
         </div>
-        <div id="horizontal" style={{display: 'flex', flexDirection: 'column', alignItems: 'center', height:'85%', color:'#FFFFFF', width:'28%',backgroundImage: 'linear-gradient(to right, #6d93ec, #6e95ed, #6e98ed, #6f9aee, #709cee, #719eee, #72a0ef, #73a2ef, #74a4ef, #76a6f0, #77a8f0, #79aaf0)',borderRadius:25}}>
-        <h2>Saturday</h2>
-            <p>20</p>
-            <WbSunnyOutlinedIcon fontSize="large"></WbSunnyOutlinedIcon>
-        </div>
-        <div id="horizontal" style={{display: 'flex', flexDirection: 'column', alignItems: 'center', height:'85%', color:'#FFFFFF', width:'28%',backgroundImage:'linear-gradient(to right, #75a3ef, #76a4ef, #76a6f0, #77a7f0, #78a8f0, #79aaf0, #79abf1, #7aadf1, #7baff2, #7cb1f3, #7db3f3, #7eb5f4)',borderRadius:25}}>
-        <h2>Saturday</h2>
-            <p>20</p>
-            <WbSunnyOutlinedIcon fontSize="large"></WbSunnyOutlinedIcon>
-        </div> 
+        
     </SwiperSlide>
       
     </Swiper>
