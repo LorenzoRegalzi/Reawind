@@ -4,9 +4,9 @@ import Card from '@material-ui/core/Card';
 
 
 import { useDispatch, useSelector } from 'react-redux';
-import { getMultiWeather} from './store/actions/multiWeatherAction';
+import { getMultiWeather} from '../store/actions/multiWeatherAction';
 import React, {useState, useEffect} from 'react';
-import './App.css';
+import '../App.css';
 
 
 const useStyles = makeStyles({
@@ -20,9 +20,7 @@ const useStyles = makeStyles({
     display: 'flex',
     flexDirection:'row',
     justifyContent: 'space-around',
-    backgroundImage: 'linear-gradient(to right, #50586e, #555e73, #5a6478, #606a7e, #657083, #6a7588, #6e7b8d, #738092, #798698, #7f8d9d, #8593a3, #8b9aa9);',
     color: 'white',
-    
   },
   tempBox:{
     display: 'flex',
@@ -56,7 +54,6 @@ export default function SimpleCard() {
 
     }, [dispatch]);
     
-    console.log(data);
 
     let d = new Date();
 
@@ -97,7 +94,7 @@ export default function SimpleCard() {
   return (
     <React.Fragment> 
 
-    <Card className={classes.root}>
+    <Card className={classes.root} style={{ backgroundImage: 'linear-gradient(to right, #132e70, #173476, #1a397c, #1e3f81, #224587, #264c8e, #2b5395, #2f5a9c, #3564a6, #3b6db0, #4177ba, #4781c4)'}}>
     <div className={classes.tempBox}>
     <h2 className={classes.cityName}>{data.list[0].name}</h2>
     <h5 className={classes.date}>{`${dayString} ${day},`}</h5>
@@ -108,10 +105,10 @@ export default function SimpleCard() {
     <img src={`http://openweathermap.org/img/wn/${data.list[0].weather[0].icon}.png`} alt="temp"></img>
     </div>
    <div className={classes.tempBox}>
-    <p  class="temperature">{Math.round(data.list[0].main.temp)}<sup>o</sup></p>
+    <p  className="temperature">{Math.round(data.list[0].main.temp)}<sup>o</sup></p>
    </div>
    </Card>
-   <Card className={classes.root} style={{marginTop:20, backgroundImage: 'linear-gradient(to right, #132e70, #173476, #1a397c, #1e3f81, #224587, #264c8e, #2b5395, #2f5a9c, #3564a6, #3b6db0, #4177ba, #4781c4)'}}>
+   <Card className={classes.root} style={{marginTop:20, backgroundImage: 'linear-gradient(to right, #50586e, #555e73, #5a6478, #606a7e, #657083, #6a7588, #6e7b8d, #738092, #798698, #7f8d9d, #8593a3, #8b9aa9)'}}>
     <div className={classes.tempBox}>
     <h2 className={classes.cityName}>{data.list[1].name}</h2>
     <h5 className={classes.date}>{`${dayString} ${day},` }</h5>
@@ -122,7 +119,7 @@ export default function SimpleCard() {
     <img src={`http://openweathermap.org/img/wn/${data.list[1].weather[0].icon}.png`} alt="temp"></img>
     </div>
    <div className={classes.tempBox}>
-    <p  class="temperature">{Math.round(data.list[0].main.temp)}<sup>o</sup></p>
+    <p  className="temperature">{Math.round(data.list[0].main.temp)}<sup>o</sup></p>
    </div>
   
   

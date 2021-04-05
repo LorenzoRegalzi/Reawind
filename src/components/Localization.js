@@ -1,7 +1,7 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
-
+import '../App.css';
 import RoomOutlinedIcon from '@material-ui/icons/RoomOutlined';
 
 
@@ -36,9 +36,12 @@ export default function SimpleCard() {
   
 
   return (
-    <Card className={classes.root}>
-        <RoomOutlinedIcon fontSize="large" />
-       <h2>Add Localization</h2>
-    </Card>
+    <React.Fragment>
+      <h1 className="cardTitle" style={{marginTop: 20}}>Localization</h1>
+      <Card className={classes.root}>
+          <RoomOutlinedIcon fontSize="large" />
+        <h2 style={{fontSize: '1.8em'}}>Add Localization</h2>
+      </Card>
+    </React.Fragment>
   );
 }

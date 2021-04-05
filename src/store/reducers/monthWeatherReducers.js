@@ -1,4 +1,4 @@
-import { GET_MULTIWEATHER, SET_ERROR } from '../types';
+import { GET_MONTHWEATHER, SET_ERROR } from '../types';
 
 const initialState = {
   data: null,
@@ -7,7 +7,7 @@ const initialState = {
 
 const fn = (state = initialState, action) => {
   switch (action.type) {
-    case GET_MULTIWEATHER:
+    case GET_MONTHWEATHER:
       return {
         data: action.payload,
         error: '',

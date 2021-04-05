@@ -5,7 +5,7 @@ const initialState = {
   error: '',
 };
 
-export default (state = initialState, action) => {
+const fn =  (state = initialState, action) => {
   switch (action.type) {
     case GET_WEATHER:
       return {
@@ -21,3 +21,5 @@ export default (state = initialState, action) => {
       return state;
   }
 };
+
+export default fn;

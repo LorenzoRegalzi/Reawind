@@ -3,14 +3,14 @@ import React, {useState, useEffect} from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
-import Timeline from './Timeline';
-import SearchCard from './SearchCard';
-import Localization from './Localization';
-import AddCity from './AddCIty';
-import CityCard from './CityCard';
-import Temperature from './Temperature';
-import Tabs from './Tabs';
-import MainCity from './MainCity';
+import Timeline from './components/Timeline';
+import SearchCard from './components/SearchCard';
+import Localization from './components/Localization';
+import AddCity from './components/AddCIty';
+import CityCard from './components/CityCard';
+import Temperature from './components/Temperature';
+import Tabs from './components/Tabs';
+import MainCity from './components/MainCity';
 
 import { useDispatch, useSelector } from 'react-redux';
 import { getFiveDayWeather} from './store/actions/weatherActions';
@@ -20,7 +20,7 @@ import './App.css';
 
 
 
-export default function FullWidthGrid() {
+export default function App() {
   const classes = useStyles();
 
   const [loading] = useState(false);
@@ -48,46 +48,36 @@ export default function FullWidthGrid() {
 
   return (
     <React.Fragment>
-    <div className={classes.absoluteCard}>
+    <div className="absoluteCard">
       <Temperature data={data}></Temperature>
     </div>
-    <div className={classes.root}>
+    <div className="appMain">
       <Grid container spacing={3}>
-        <Grid className={classes.grid} style={{height: '100%'}} item xs={12} sm={12} md={8}>
-          <Paper className={classes.cityBox} style={{borderRadius: 25,height: 450, backgroundImage: `url("https://wallpaperaccess.com/full/2043362.jpg")`, backgroundSize: 'cover'}}>
+        <Grid className={classes.grid}  item xs={12} sm={12} md={8}>
+          <Paper className={classes.cityBox}>
               <MainCity data={data}></MainCity>
           </Paper>
         </Grid>
-        <Grid item xs={12} sm={12} md={4}>
+        <Grid item xs={12} sm={6} md={4}>
           <AddCity></AddCity>
-          <Paper className={classes.paper} >
-            <div className={classes.tipCard}>
-              <CityCard  ></CityCard>
-            </div>
+          <Paper className="mainPaper">
+              <CityCard></CityCard>
           </Paper>
         </Grid>
         <Grid item xs={12} sm={6} md={3}>
-          <Paper className={classes.paper}>
-            <h1 className={classes.cardTitle}>Today</h1>
+          <Paper className="mainPaper">
             <Timeline data={data}></Timeline>
           </Paper>
         </Grid>
         <Grid style={{height: '100%'}} item xs={12} sm={6} md={5}>
-          <Paper className={classes.paper}>
+          <Paper className="mainPaper">
             <Tabs ></Tabs>
           </Paper>
         </Grid>
-        <Grid  item xs={12} sm={12} md={4}>
-          <Paper className={classes.paper}>
-            <h1 className={classes.cardTitle}>Search</h1>
-            <div className={classes.tipCard}>
-              <SearchCard>
-              </SearchCard>
-            </div>
-            <h1 className={classes.cardTitle} style={{marginTop: 20}}>Localization</h1>
-            <div className={classes.tipCard}>
+        <Grid  item xs={12} sm={6} md={4}>
+          <Paper className="mainPaper">
+              <SearchCard></SearchCard>
               <Localization></Localization>
-            </div>
           </Paper>
         </Grid>
       </Grid>
@@ -98,52 +88,18 @@ export default function FullWidthGrid() {
 
 
 const useStyles = makeStyles((theme) => ({
-  root: {
-    flexGrow: 1,
-    paddingTop: 50,
-    paddingBottom: 50,
-    paddingLeft: 35,
-    paddingRight: 35,
-    overflow: 'hidden',
-   
-  },
-  paper: {
-    textAlign: 'left',
-    boxShadow: 'none',
-    height:'100%',
-    backgroundColor: 'transparent',
-    marginLeft: 15,
-    marginRight: 15
-  },
-  
-  
-  cardTitle: {
-    marginTop: 0,
-  },
-  cardWeather: {
-    backgroundColor: 'transparent'
-  },
-  card: {
-    minWidth: 275,
-    height: 100,
-    backgroundImage: 'linear-gradient(114deg, rgba(86,122,232,1) 0%, rgba(97,140,236,1) 35%, rgba(108,163,241,1) 100%)',
-  },
+ 
   cityBox: {
     boxShadow: `-webkit-box-shadow: 0px 26px 32px 2px rgba(0,0,0,0.12);
     -moz-box-shadow: 0px 26px 32px 2px rgba(0,0,0,0.12);
     box-shadow: 0px 26px 32px 2px rgba(0,0,0,0.12);`,
     marginLeft: 15,
     marginRight: 15,
+    borderRadius: 25,
+    height: 450,
+    backgroundImage: `url("https://wallpaperaccess.com/full/2043362.jpg")`, 
+    backgroundSize: 'cover'
   },
-  absoluteCard: {
-    width: '140',
-    height: '280',
-    display: 'absolute',
-    position: 'absolute',
-    top: '130',
-  },
-  grid:{
-   blockSize: 650,
-   
-  }
+  
+ 
 }));

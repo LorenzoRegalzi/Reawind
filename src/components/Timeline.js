@@ -1,4 +1,5 @@
-import React from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import React, {useState, useEffect} from 'react';
 import Timeline from '@material-ui/lab/Timeline';
 import TimelineItem from '@material-ui/lab/TimelineItem';
 import TimelineSeparator from '@material-ui/lab/TimelineSeparator';
@@ -7,10 +8,24 @@ import TimelineContent from '@material-ui/lab/TimelineContent';
 import TimelineDot from '@material-ui/lab/TimelineDot';
 import TimelineOppositeContent from '@material-ui/lab/TimelineOppositeContent';
 import Typography from '@material-ui/core/Typography';
-import './App.css';
+import '../App.css';
 
 
-export default function OppositeContentTimeline({ loading, data, error }) {
+import { getMonthWeather} from '../store/actions/monthWeatherAction';
+
+
+export default function OppositeContentTimeline() {
+
+  const [loading] = useState(false);
+  const dispatch = useDispatch();
+  const { data, error } = useSelector(state => state.monthWeather);
+
+  
+
+
+  useEffect(() => {
+    dispatch(getMonthWeather());
+  }, [dispatch]);
 
     if (error) {
       return <div >
@@ -23,28 +38,38 @@ export default function OppositeContentTimeline({ loading, data, error }) {
     }
     
 
-    const nowTemperature = data.list[0].main.temp;
+    const nowTemperature = data.current.temp;
 
     const aroundNowTemperature = Math.round(nowTemperature);
 
 
     const times = [];
+    
 
-    for (let i = 1; i < 9; i++) {
+    for (let i = 1; i < 24; i++) {
 
-      let temperature = data.list[i].main.temp;
+      let temperature = data.hourly[i].temp;
 
       let aroundTemperature = Math.round(temperature);
+      
+      let unix_timestamp = data.hourly[i].dt;
 
-      var onlyHours = new Date(data.list[i].dt_txt).getHours();
+    
 
-      var ampm = onlyHours >= 12 ? 'p.m.' : 'a.m.';
+      var date = new Date(unix_timestamp * 1000);
 
-      onlyHours = onlyHours % 12;
+     
 
-      onlyHours = onlyHours ? onlyHours : 12;
+      var hours = date.getHours();
 
-      let formatHours = onlyHours + ' ' + ampm;
+
+      var ampm = hours >= 12 ? 'p.m.' : 'a.m.';
+      hours = hours % 12;
+      hours = hours ? hours : 12; // the hour '0' should be '12'
+
+      
+
+      let formatHours = hours + ' ' + ampm;
 
       times.push({date : formatHours , temperature : aroundTemperature});
     }
@@ -53,7 +78,7 @@ export default function OppositeContentTimeline({ loading, data, error }) {
 
   return (
     <React.Fragment>
-    
+      <h1 className="cardTitle">Today</h1>
       <Timeline class="timeline">
       
       <h3 class="title">Now</h3>

@@ -3,6 +3,29 @@ h2 {
   padding: 20;
  }
 
+body {
+  margin: 0;
+  font-family:'Roboto', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+ 
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+h1 {
+  padding: 13px 12px;
+  margin:0;
+  color: #01185F;
+}
+
+.MuiPaper-root {
+  background-color: none; 
+}
+
  #horizontal {
   -webkit-box-shadow: 0px 26px 32px 2px rgba(0,0,0,0.12);
   -moz-box-shadow: 0px 26px 32px 2px rgba(0,0,0,0.12);
@@ -15,8 +38,47 @@ h2 {
   height: 10px;
 }
 img {
-  width: 150px;
+  width: 100px;
 }
+
+/* APP */
+
+.appMain {
+  flex-grow: 1;
+  padding-top: 50;
+  padding-bottom: 50;
+  padding-left: 35;
+  padding-right: 35;
+  overflow: hidden
+}
+
+.mainPaper {
+  text-align: left;
+  box-shadow: none!important;
+  height: 100%;
+  background-color: transparent!important;
+  margin-left: 15;
+  margin-right: 15
+}
+.cardTitle {
+  margin-top: 0;
+  color : #01185F
+}
+.absoluteCard {
+  width: 140;
+  height: 280;
+  display: absolute;
+  position: absolute;
+  top: 130
+}
+
+
+
+
+
+
+
+
 /* Main Card */
 
 .textcityBox {
@@ -55,6 +117,7 @@ img {
   height: 20px;
   margin: 0;
   border-radius: 50%;
+  position: absolute;
 }
 
 
@@ -63,8 +126,8 @@ img {
   height: 374px;
   margin: 0;
   margin-top:10;
-  border-radius: 25px;
-  color: #ffffff;
+  border-radius: 25px!important;
+  color: #ffffff!important;
   background-image: linear-gradient(114deg, rgba(86,122,232,1) 0%, rgba(97,140,236,1) 35%, rgba(108,163,241,1) 100%);
   padding-left: 0;
 }
@@ -77,18 +140,18 @@ img {
   bottom: 20px;
 }
 .firstDot {
-  background-color: #ffffff;
+  background-color: #ffffff!important;
   width: 33px;
   height: 33px;
   margin: 0;
-  border-radius: 50%;
+  border-radius: 50%!important;
+  position: absolute;
 }
 .line {
   background-color: #ffffff;
   width: 7px;
     height: 71px;
-    position: absolute;
-    margin-top: 10px;
+  
     left: 144px;
 }
 .title {
@@ -106,4 +169,19 @@ img {
   font-size: 2.3em;
   margin:0;
   font-weight: bold
+}
+
+
+/* MonthTable */
+
+.leftSide {
+  margin-left: 30;
+  margin-top: 10;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: start;
+}
+.monthIcon {
+  margin-top: 30;
 }

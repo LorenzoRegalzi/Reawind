@@ -1,7 +1,7 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
-import './App.css';
+import '../App.css';
 
 
 
@@ -32,6 +32,10 @@ const useStyles = makeStyles({
   content: {
     flex: '1 0 auto',
   },
+  gradius: {
+    position: 'absolute',
+    bottom: 178
+  }
   
 });
 
@@ -51,7 +55,7 @@ const Temperature = ({ loading, data, error }) => {
   return (
     <Card className={classes.root}>
         
-        <p  class="temperature">{Math.floor(data.list[0].main.temp)}<sup>o</sup></p>
+        <p  className="temperature">{Math.floor(data.list[0].main.temp)}<sup className={classes.gradius}>o</sup></p>
         <img src={`http://openweathermap.org/img/wn/${data.list[0].weather[0].icon}.png`} alt="temp"></img>
     </Card>
   );

@@ -4,7 +4,7 @@ import Card from '@material-ui/core/Card';
 import SearchIcon from '@material-ui/icons/Search';
 import Button from '@material-ui/core/Button';
 import InputBase from '@material-ui/core/InputBase';
-
+import '../App.css';
 
 
 const useStyles = makeStyles({
@@ -36,7 +36,7 @@ const useStyles = makeStyles({
     fontSize: '2em',
     fontWeight: 'bold',
     color: '#B8B8B8',
-  }
+  },
 });
 
 export default function SimpleCard() {
@@ -44,6 +44,8 @@ export default function SimpleCard() {
   
   
   return (
+    <React.Fragment>
+    <h1 className="cardTitle" >Search</h1>
     <Card className={classes.root}>
     
         
@@ -57,5 +59,6 @@ export default function SimpleCard() {
      
     
     </Card>
+    </React.Fragment>
   );
 }
