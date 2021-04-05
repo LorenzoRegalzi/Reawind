@@ -56,7 +56,7 @@ const Temperature = ({ loading, data, error }) => {
     <Card className={classes.root}>
         
         <p  className="temperature">{Math.floor(data.list[0].main.temp)}<sup className={classes.gradius}>o</sup></p>
-        <img src={`http://openweathermap.org/img/wn/${data.list[0].weather[0].icon}.png`} alt="temp"></img>
+        <img src={`http://openweathermap.org/img/wn/${data.list[0].weather[0].icon}@2x.png`} alt="temp"></img>
     </Card>
   );
 }

@@ -57,7 +57,7 @@ export default function SimpleCard () {
           <div id="horizontal" style={{fontWeight: '500', height:'80%',color:'#FFFFFF',width:'90%',margin:'6%',backgroundImage: 'linear-gradient(to right, #6d93ec, #6e95ed, #6e98ed, #6f9aee, #709cee, #719eee, #72a0ef, #73a2ef, #74a4ef, #76a6f0, #77a8f0, #79aaf0)',borderRadius:25,display:'flex', justifyContent: 'start'}}>
             <div className="leftSide">
               <h3>{`${dayString} ${day}, ${month}`}</h3>
-              <img className="monthIcon" src={`http://openweathermap.org/img/wn/${data.current.weather[0].icon}.png`} alt="temp"></img>
+              <img className="monthIcon" src={`http://openweathermap.org/img/wn/${data.current.weather[0].icon}@2x.png`} alt="temp"></img>
             </div>
             <div style={{marginLeft: 80, marginTop: '20'}}>
               <p className="temperature" style={{fontSize: '2.0em',}}>{Math.round(data.current.temp)}<sup>o</sup></p>

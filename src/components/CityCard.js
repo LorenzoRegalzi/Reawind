@@ -102,7 +102,7 @@ export default function SimpleCard() {
     <small className={classes.hour}>{timeWithPlace('GB')}</small>
     </div>
     <div className={classes.tempBox}>
-    <img src={`http://openweathermap.org/img/wn/${data.list[0].weather[0].icon}.png`} alt="temp"></img>
+    <img src={`http://openweathermap.org/img/wn/${data.list[0].weather[0].icon}@2x.png`} alt="temp"></img>
     </div>
    <div className={classes.tempBox}>
     <p  className="temperature">{Math.round(data.list[0].main.temp)}<sup>o</sup></p>
@@ -116,7 +116,7 @@ export default function SimpleCard() {
     <small className={classes.hour}>{timeWithPlace('CET')}</small>
     </div>
     <div className={classes.tempBox}>
-    <img src={`http://openweathermap.org/img/wn/${data.list[1].weather[0].icon}.png`} alt="temp"></img>
+    <img src={`http://openweathermap.org/img/wn/${data.list[1].weather[0].icon}@2x.png`} alt="temp"></img>
     </div>
    <div className={classes.tempBox}>
     <p  className="temperature">{Math.round(data.list[0].main.temp)}<sup>o</sup></p>
